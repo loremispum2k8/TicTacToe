@@ -1,0 +1,4 @@
+object 1 (array)
+object 2 (players)
+object 3 (play game system)
+logic when game end
