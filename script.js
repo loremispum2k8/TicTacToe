@@ -175,7 +175,7 @@ cells.forEach(cell => {
                     }
                 } else if(filled === 9){
                     evalBoard();
-                    if(finalResult === 'draw'){
+                    if(finalResult === 'draw' || finalResult === 'O player won' || finalResult === 'X player won'){
                         result.textContent = finalResult;
                     }
                 }
