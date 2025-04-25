@@ -8,19 +8,61 @@
     <link rel="icon" href="_tictactoe.jpg">
 </head>
 <body>
-    
-    <div class="gameContainer">
-        <div class="cell" dataRow="row1" dataIndex="0"></div>
-        <div class="cell" dataRow="row1" dataIndex="1"></div>
-        <div class="cell" dataRow="row1" dataIndex="2"></div>
-        <div class="cell" dataRow="row2" dataIndex="0"></div>
-        <div class="cell" dataRow="row2" dataIndex="1"></div>
-        <div class="cell" dataRow="row2" dataIndex="2"></div>
-        <div class="cell" dataRow="row3" dataIndex="0"></div>
-        <div class="cell" dataRow="row3" dataIndex="1"></div>
-        <div class="cell" dataRow="row3" dataIndex="2"></div>
+
+    <div class="choosePlayers-container">
+        <form class="innerContainer">
+            <h1 class="title">Choose players</h1>
+            <div class="choose-players-duo">
+                <div class="labelAndInput">
+                    <label for="player1">Player 1</label>
+                    <input id="player1" type="text" required>
+                </div>
+                <div class="labelAndInput">
+                    <label for="player2">Player 2</label>
+                    <input id="player2" type="text" required>
+                </div>
+            </div>
+            <button class="start" type="submit">Start</button>
+        </form>
     </div>
-    <h2 class="result"></h2>
+    
+    <div class="container">
+        <div class="p1VSp2">
+            <div class="player-container">
+                <p class="player player1Name"></p>
+                <div class="player-score">
+                    <p class="score-text">score:</p>
+                    <p class="score score1"></p>
+                </div>
+            </div>
+            <p class="vs">VS</p>
+            <div class="player-container">
+                <p class="player player2Name"></p>
+                <div class="player-score">
+                    <p class="score-text">score:</p>
+                    <p class="score score2"></p>
+                </div>
+            </div>
+        </div>
+        <div class="gameContainer">
+            <div class="cell" dataRow="row1" dataIndex="0"></div>
+            <div class="cell" dataRow="row1" dataIndex="1"></div>
+            <div class="cell" dataRow="row1" dataIndex="2"></div>
+            <div class="cell" dataRow="row2" dataIndex="0"></div>
+            <div class="cell" dataRow="row2" dataIndex="1"></div>
+            <div class="cell" dataRow="row2" dataIndex="2"></div>
+            <div class="cell" dataRow="row3" dataIndex="0"></div>
+            <div class="cell" dataRow="row3" dataIndex="1"></div>
+            <div class="cell" dataRow="row3" dataIndex="2"></div>
+        </div>
+        <div class="result-container">
+            <p>Result:</p>
+            <p class="result"></p>
+        </div>
+        <div class="buttons">
+            <button class="reset">Reset</button>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>

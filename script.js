@@ -1,3 +1,34 @@
+let popUp = document.querySelector('.choosePlayers-container')
+let startButton = document.querySelector('.start');
+let resetButton = document.querySelector('.reset');
+let greenLight = false;
+let player1Name = document.querySelector('.player1Name')
+let player2Name = document.querySelector('.player2Name')
+let score1 = document.querySelector('.score1');
+let score2 = document.querySelector('.score2');
+console.log(player2Name)
+let playerConstructor = function(){
+    let player1 = {};
+    let player2 = {};
+    player1.name = document.querySelector('#player1').value;
+    player2.name = document.querySelector('#player2').value;
+    player1.score=0;
+    player2.score=0;
+    console.log(player1,player2)
+    
+    player1Name.textContent = player1.name;
+    player2Name.textContent = player2.name;
+    score1.textContent = player1.score;
+    score2.textContent = player2.score;
+    
+}
+startButton.addEventListener('click',(e)=>{
+    e.preventDefault();
+    greenLight = true;
+    popUp.style.display = 'none'
+    playerConstructor();
+})
+
 const o = 'o';
 const x = 'x';
 let mover = o;
@@ -138,16 +169,14 @@ let evalBoard = function(){
             console.log(finalResult)
         }else {
             if(oCount>xCount){
-                finalResult = 'O player won';
+                finalResult = `${player2.name} won`;
                 console.log(finalResult)
             } else{
-                finalResult = 'X player won';
+                finalResult = `${player1.name} won`;
                 console.log(finalResult)
             }
         }
     }
-
-
 
 let cells = document.querySelectorAll('.cell');
 let result = document.querySelector('.result')
@@ -155,34 +184,37 @@ cells.forEach(cell => {
     cell.addEventListener('click',analyzeBoard)
 
     function analyzeBoard(e){
-        if(filled<9 && result.textContent === ''){
-            if(CreateBoard[e.target.getAttribute('dataRow')][e.target.getAttribute('dataIndex')] === undefined){
-                if(mover === o){
-                    mover = x;
-                    CreateBoard[e.target.getAttribute('dataRow')][e.target.getAttribute('dataIndex')] = mover;
-                }else if(mover === x){
-                    mover = o;
-                    CreateBoard[e.target.getAttribute('dataRow')][e.target.getAttribute('dataIndex')] = mover;
-                }
-                e.target.textContent = CreateBoard[e.target.getAttribute('dataRow')][e.target.getAttribute('dataIndex')];
-                filled = filled+1;
-                console.log(filled)
-        
-                if(filled >= 5 && filled < 9){
-                    evalBoard();
-                    if(finalResult === 'O player won' || finalResult === 'X player won'){
-                        result.textContent = finalResult;
+        if(greenLight){
+            if(filled<9 && result.textContent === ''){
+                if(CreateBoard[e.target.getAttribute('dataRow')][e.target.getAttribute('dataIndex')] === undefined){
+                    if(mover === o){
+                        mover = x;
+                        CreateBoard[e.target.getAttribute('dataRow')][e.target.getAttribute('dataIndex')] = mover;
+                    }else if(mover === x){
+                        mover = o;
+                        CreateBoard[e.target.getAttribute('dataRow')][e.target.getAttribute('dataIndex')] = mover;
                     }
-                } else if(filled === 9){
-                    evalBoard();
-                    if(finalResult === 'draw' || finalResult === 'O player won' || finalResult === 'X player won'){
-                        result.textContent = finalResult;
+                    e.target.textContent = CreateBoard[e.target.getAttribute('dataRow')][e.target.getAttribute('dataIndex')];
+                    filled = filled+1;
+                    console.log(filled)
+            
+                    if(filled >= 5 && filled < 9){
+                        evalBoard();
+                        if(finalResult !== 'draw'){
+                            result.textContent = finalResult;
+                        }
+                    } else if(filled === 9){
+                        evalBoard();
+                        if(finalResult === 'draw' || finalResult === 'O player won' || finalResult === 'X player won'){
+                            result.textContent = finalResult;
+                        }
                     }
                 }
+            }else if(result.textContent !== ''){
+                cell.removeEventListener('click',analyzeBoard)
             }
-        }else if(result.textContent !== ''){
-            cell.removeEventListener('click',analyzeBoard)
         }
     }
 
 });
+
